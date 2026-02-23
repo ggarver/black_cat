@@ -3,7 +3,8 @@ import warnings
 import numpy as np
 import torch as th
 
-import torchnet as tnt
+# import torchnet as tnt
+import lightning as L
 import torchvision 
 import torchvision.transforms as transforms
 from torchvision.datasets import CIFAR10, CIFAR100, FashionMNIST, MNIST 
@@ -53,6 +54,7 @@ def cutout(mask_size,channels=3):
 
     return _cutout
 
+# TODO: alter to use lightning
 def mnist(datadir, training_transforms=[], mode='train', transform=False, greyscale=False, **kwargs):
     assert mode in ['train', 'test']
     if greyscale==True:
@@ -155,7 +157,7 @@ def Fashion(datadir, training_transforms = [], mode='train', transform=True, **k
 
     return dataloader
 
-
+# TODO: alter to use lightning again 
 def cifar10(datadir, greyscale=False, training_transforms=[], mode='train', transform=True, subset=None, **kwargs):
 
     assert mode in ['train', 'test', 'val']

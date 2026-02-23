@@ -14,12 +14,15 @@ from torch.optim.lr_scheduler import LambdaLR
 
 #import torchnet as tnt
 # torchnet is outdated, swap for ...pytorch lightning?
-import pytorch.lightning as pl
+import lightning as L
+
 
 
 sys.path.append('../')
-import dataloader
-from dataloader import cutout
+# import dataloader
+# from dataloader import cutout
+# ----------THESE are both tnt - out of date 
+
 import cvmodels as models
 
 # -------------
@@ -225,7 +228,7 @@ with open(testlog,'w') as f:
 
 
 
-# TODO: alter test func to use pytorch lightning
+# TODO: alter test func to use lightning
 def test(epoch, ttot):
     pmodel.eval()
 

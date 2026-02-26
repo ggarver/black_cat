@@ -11,6 +11,7 @@ import torch.nn as nn
 import torch.backends.cudnn as cudnn
 from torch import optim
 from torch.optim.lr_scheduler import LambdaLR
+from torch.utils.data import DataLoader  
 
 #import torchnet as tnt
 # torchnet is outdated, swap for ...pytorch lightning?
@@ -22,6 +23,8 @@ sys.path.append('../')
 # import dataloader
 # from dataloader import cutout
 # ----------THESE are both tnt - out of date 
+
+
 
 import cvmodels as models
 
@@ -67,6 +70,19 @@ with open(args_file_path, 'w') as f:
 
 
 # Data loaders
+#--------Grace Code!---------------------------------
+test_dataloader = DataLoader(
+    training_data = args.dataset,
+    batch_size = args.test_batch_size,
+    shuffle = True
+)
+img_shp = test_dataloader.image_shape
+transforms = [cutout(args.cutout,channels=image_shape[0])]
+# train_dataloader = ...
+
+# ----------------------------------------
+
+
 workers=4
 test_loader = getattr(dataloader, args.dataset)(args.datadir,
         mode='test', transform=False,
